@@ -89,10 +89,9 @@ const LINKS = [
 export default function App() {
   return (
     <div className="min-h-screen bg-zinc-900 text-white flex flex-col items-center py-14 px-5">
-      {/* Avatar / Logo */}
-      <div className="w-24 h-24 rounded-full bg-zinc-700 border-2 border-zinc-500 flex items-center justify-center mb-4 overflow-hidden">
-        {/* Reemplazá este div por <img src="/logo.png" ... /> cuando tengas el logo */}
-        <span className="text-3xl font-black tracking-tight text-white">P+</span>
+      {/* Logo */}
+      <div className="w-28 h-28 rounded-full bg-white flex items-center justify-center mb-4 overflow-hidden shadow-lg">
+        <img src="/logo.png" alt="Plus Gráfica" className="w-full h-full object-contain p-2" />
       </div>
 
       {/* Identity */}
