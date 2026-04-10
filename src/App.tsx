@@ -90,8 +90,8 @@ export default function App() {
   return (
     <div className="min-h-screen bg-zinc-900 text-white flex flex-col items-center py-14 px-5">
       {/* Logo */}
-      <div className="w-28 h-28 rounded-full bg-white flex items-center justify-center mb-4 overflow-hidden shadow-lg">
-        <img src="/logo.png" alt="Plus Gráfica" className="w-full h-full object-contain p-2" />
+      <div className="w-64 bg-white rounded-2xl flex items-center justify-center mb-4 overflow-hidden shadow-lg px-4 py-3">
+        <img src="/logo.png" alt="Plus Gráfica" className="w-full object-contain" />
       </div>
 
       {/* Identity */}
