@@ -1,152 +1,251 @@
 import React from 'react';
 
-// ─── Inline brand SVGs (sin dependencias extra) ────────────────────────────
+const WHATSAPP_URL =
+  'https://wa.me/56967240923?text=Hola%2C%20me%20comunico%20desde%20el%20hub%20de%20Plus%20Gr%C3%A1fica.%20Quisiera%20cotizar.';
+
+const TRACKING_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'] as const;
+
+const withTracking = (url: string) => {
+  if (typeof window === 'undefined') return url;
+
+  const destination = new URL(url);
+  const current = new URLSearchParams(window.location.search);
+
+  TRACKING_KEYS.forEach((key) => {
+    const value = current.get(key);
+    if (value) destination.searchParams.set(key, value);
+  });
+
+  return destination.toString();
+};
+
+const ArrowIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-5 w-5" aria-hidden="true">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
+);
 
 const WhatsAppIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
   </svg>
 );
 
 const InstagramIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
-    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
   </svg>
 );
 
 const FacebookIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
-    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
   </svg>
 );
 
 const TikTokIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
-    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.78a4.85 4.85 0 01-1.07-.09z"/>
+  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
+    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.78a4.85 4.85 0 01-1.07-.09z" />
   </svg>
 );
 
 const MapPinIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-7 h-7">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-5 w-5" aria-hidden="true">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1116 0z" />
+    <circle cx="12" cy="10" r="2.5" />
   </svg>
 );
-
-// ─── Data ──────────────────────────────────────────────────────────────────
-
-const WHATSAPP_URL =
-  'https://wa.me/56967240923?text=Hola%2C%20me%20comunico%20desde%20el%20sitio%20web.%20Quisiera%20cotizar.';
 
 const WebIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-7 h-7">
-    <circle cx="12" cy="12" r="10" />
-    <path strokeLinecap="round" d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-5 w-5" aria-hidden="true">
+    <circle cx="12" cy="12" r="9" />
+    <path strokeLinecap="round" d="M3 12h18M12 3c2.2 2.4 3.3 5.4 3.3 9S14.2 18.6 12 21c-2.2-2.4-3.3-5.4-3.3-9S9.8 5.4 12 3z" />
   </svg>
 );
 
-const LINKS = [
-  {
-    name: 'Sitio Web',
-    handle: 'plusgrafica.cl',
-    icon: <WebIcon />,
-    url: 'https://www.plusgrafica.cl/',
-    bg: 'bg-zinc-700 border border-zinc-500',
-    fullWidth: true,
-  },
+const CatalogIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-5 w-5" aria-hidden="true">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5 4.5h11.5A2.5 2.5 0 0119 7v12.5H7.5A2.5 2.5 0 015 17V4.5z" />
+    <path strokeLinecap="round" d="M8 8h7M8 11.5h7M8 15h4" />
+  </svg>
+);
+
+const socialLinks = [
   {
     name: 'Instagram',
     handle: '@plus_grafica',
-    icon: <InstagramIcon />,
     url: 'https://www.instagram.com/plus_grafica/',
-    bg: 'bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400',
+    icon: <InstagramIcon />,
+    accent: 'from-fuchsia-500/20 via-pink-500/10 to-orange-400/10',
   },
   {
     name: 'Facebook',
     handle: 'Plusgraficachile',
-    icon: <FacebookIcon />,
     url: 'https://www.facebook.com/Plusgraficachile/',
-    bg: 'bg-blue-600',
+    icon: <FacebookIcon />,
+    accent: 'from-blue-500/20 to-blue-400/5',
   },
   {
     name: 'TikTok',
     handle: '@plus.grafica',
-    icon: <TikTokIcon />,
     url: 'https://www.tiktok.com/@plus.grafica',
-    bg: 'bg-zinc-800 border border-zinc-600',
-  },
-  {
-    name: 'Ubicación',
-    handle: 'Temuco, Araucanía',
-    icon: <MapPinIcon />,
-    url: 'https://www.google.com/maps/search/Plus+Grafica+Temuco',
-    bg: 'bg-red-600',
+    icon: <TikTokIcon />,
+    accent: 'from-cyan-400/10 via-zinc-800/20 to-pink-500/10',
   },
 ];
 
-// ─── Component ────────────────────────────────────────────────────────────
+const ActionCard = ({
+  href,
+  icon,
+  title,
+  detail,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  title: string;
+  detail: string;
+}) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group rounded-[22px] border border-white/10 bg-white/[0.055] p-4 text-left shadow-[0_18px_50px_rgba(0,0,0,0.18)] backdrop-blur transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.085] active:scale-[0.985]"
+  >
+    <div className="mb-7 flex items-center justify-between">
+      <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-white/90">
+        {icon}
+      </span>
+      <span className="text-white/35 transition group-hover:translate-x-0.5 group-hover:text-white/70">
+        <ArrowIcon />
+      </span>
+    </div>
+    <span className="block text-[15px] font-semibold tracking-tight text-white">{title}</span>
+    <span className="mt-1 block text-xs leading-5 text-zinc-500">{detail}</span>
+  </a>
+);
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-zinc-900 text-white flex flex-col items-center py-14 px-5">
-      {/* Logo */}
-      <div className="w-64 bg-white rounded-2xl flex items-center justify-center mb-4 overflow-hidden shadow-lg px-4 py-3">
-        <img src="/logo.png" alt="Plus Gráfica" className="w-full object-contain" />
-      </div>
+    <main className="relative min-h-screen overflow-hidden bg-[#0b0d0f] px-5 py-8 text-white sm:py-12">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(circle_at_50%_0%,rgba(68,189,221,0.13),transparent_62%)]" />
+      <div className="pointer-events-none absolute -left-24 top-64 h-56 w-56 rounded-full bg-sky-500/[0.045] blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 top-40 h-64 w-64 rounded-full bg-cyan-300/[0.035] blur-3xl" />
 
-      {/* Identity */}
-      <h1 className="text-xl font-bold tracking-wide">Plus Gráfica</h1>
-      <p className="text-zinc-400 text-sm mt-1 mb-8 text-center max-w-xs">
-        Taller de diseño e impresión digital · Temuco, Chile
-      </p>
-
-      {/* WhatsApp — CTA principal, ancho completo */}
-      <a
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-full max-w-sm bg-green-500 hover:bg-green-400 active:scale-95 transition-all flex items-center justify-center gap-3 py-4 rounded-2xl font-semibold text-lg shadow-lg shadow-green-900/40 mb-5"
-      >
-        <WhatsAppIcon />
-        Escribinos por WhatsApp
-      </a>
-
-      {/* Sitio web — ancho completo */}
-      {LINKS.filter((l) => l.fullWidth).map((link) => (
-        <a
-          key={link.name}
-          href={link.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${link.bg} w-full max-w-sm flex items-center justify-center gap-3 py-4 rounded-2xl shadow-lg active:scale-95 transition-all mb-3`}
-        >
-          {link.icon}
-          <div>
-            <span className="font-semibold block">{link.name}</span>
-            <span className="text-xs text-white/70">{link.handle}</span>
+      <div className="relative mx-auto flex w-full max-w-[440px] flex-col">
+        <header className="pb-8 pt-2 text-center">
+          <div className="mx-auto mb-5 flex w-[205px] items-center justify-center rounded-[22px] border border-white/80 bg-white px-5 py-4 shadow-[0_20px_65px_rgba(0,0,0,0.26)]">
+            <img src="/logo.png" alt="Plus Gráfica" className="h-auto w-full object-contain" />
           </div>
-        </a>
-      ))}
 
-      {/* Grid redes + ubicación */}
-      <div className="grid grid-cols-2 gap-3 w-full max-w-sm">
-        {LINKS.filter((l) => !l.fullWidth).map((link) => (
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-300/15 bg-sky-300/[0.07] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-100/80">
+            <span className="h-1.5 w-1.5 rounded-full bg-sky-300 shadow-[0_0_12px_rgba(125,211,252,0.8)]" />
+            Proveedor gráfico B2B
+          </div>
+
+          <h1 className="text-[30px] font-semibold tracking-[-0.035em] text-white">Plus Gráfica</h1>
+          <p className="mx-auto mt-2 max-w-sm text-[15px] leading-6 text-zinc-300">
+            Señalética · Rotulación · Gráfica industrial
+          </p>
+          <p className="mt-1.5 text-xs text-zinc-500">Producción e instalación en terreno · Temuco</p>
+        </header>
+
+        <section aria-label="Contacto principal" className="space-y-3">
           <a
-            key={link.name}
-            href={link.url}
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${link.bg} flex flex-col items-center justify-center gap-2 py-6 rounded-2xl shadow-lg active:scale-95 transition-all`}
+            className="group flex w-full items-center justify-between rounded-[24px] bg-[#25D366] px-5 py-4 text-[#07170d] shadow-[0_18px_50px_rgba(37,211,102,0.18)] transition hover:-translate-y-0.5 hover:bg-[#2adb6f] active:scale-[0.985]"
           >
-            {link.icon}
-            <span className="font-semibold text-sm">{link.name}</span>
-            <span className="text-xs text-white/70">{link.handle}</span>
+            <span className="flex items-center gap-3.5">
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-black/10">
+                <WhatsAppIcon />
+              </span>
+              <span className="text-left">
+                <span className="block text-[16px] font-bold tracking-tight">Cotizar por WhatsApp</span>
+                <span className="mt-0.5 block text-xs font-medium text-black/55">Contacto directo con Plus Gráfica</span>
+              </span>
+            </span>
+            <span className="transition group-hover:translate-x-0.5">
+              <ArrowIcon />
+            </span>
           </a>
-        ))}
-      </div>
 
-      {/* Footer */}
-      <p className="mt-12 text-zinc-600 text-xs">© {new Date().getFullYear()} Plus Gráfica</p>
-    </div>
+          <div className="grid grid-cols-2 gap-3">
+            <ActionCard
+              href={withTracking('https://catalogo.plusgrafica.cl/')}
+              icon={<CatalogIcon />}
+              title="Ver catálogo"
+              detail="Productos y servicios"
+            />
+            <ActionCard
+              href={withTracking('https://www.plusgrafica.cl/')}
+              icon={<WebIcon />}
+              title="Sitio web"
+              detail="plusgrafica.cl"
+            />
+          </div>
+        </section>
+
+        <section aria-labelledby="redes-title" className="mt-8">
+          <div className="mb-3 flex items-center justify-between px-1">
+            <h2 id="redes-title" className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+              Redes sociales
+            </h2>
+            <span className="text-[11px] text-zinc-600">Canales oficiales</span>
+          </div>
+
+          <div className="space-y-2.5">
+            {socialLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group relative flex items-center justify-between overflow-hidden rounded-[20px] border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 transition hover:border-white/15 hover:bg-white/[0.065] active:scale-[0.99]`}
+              >
+                <div className={`pointer-events-none absolute inset-0 bg-gradient-to-r ${link.accent} opacity-60`} />
+                <span className="relative flex items-center gap-3.5">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-black/15 text-white/90">
+                    {link.icon}
+                  </span>
+                  <span className="text-left">
+                    <span className="block text-sm font-semibold text-white">{link.name}</span>
+                    <span className="mt-0.5 block text-xs text-zinc-500">{link.handle}</span>
+                  </span>
+                </span>
+                <span className="relative text-white/25 transition group-hover:translate-x-0.5 group-hover:text-white/60">
+                  <ArrowIcon />
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <a
+          href="https://www.google.com/maps/search/Plus+Grafica+Temuco"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mt-3 flex items-center justify-between rounded-[20px] border border-white/[0.08] bg-white/[0.025] px-4 py-3.5 transition hover:border-white/15 hover:bg-white/[0.05] active:scale-[0.99]"
+        >
+          <span className="flex items-center gap-3.5">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-zinc-300">
+              <MapPinIcon />
+            </span>
+            <span className="text-left">
+              <span className="block text-sm font-semibold text-white">Ubicación</span>
+              <span className="mt-0.5 block text-xs text-zinc-500">Temuco · La Araucanía</span>
+            </span>
+          </span>
+          <span className="text-white/25 transition group-hover:translate-x-0.5 group-hover:text-white/60">
+            <ArrowIcon />
+          </span>
+        </a>
+
+        <footer className="pb-3 pt-10 text-center">
+          <p className="text-[11px] uppercase tracking-[0.16em] text-zinc-600">Un solo enlace · Todos nuestros canales</p>
+          <p className="mt-2 text-[11px] text-zinc-700">© {new Date().getFullYear()} Plus Gráfica SpA</p>
+        </footer>
+      </div>
+    </main>
   );
 }
