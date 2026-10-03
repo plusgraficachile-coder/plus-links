@@ -24,8 +24,12 @@ body {
   background: #dfe3e6;
 }
 
-main {
-  background-color: #dfe3e6 !important;
+header h1 {
+  display: none;
+}
+
+header h1 + p {
+  margin-top: 0;
 }
 
 * {
