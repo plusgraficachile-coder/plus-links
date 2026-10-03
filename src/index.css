@@ -24,6 +24,10 @@ body {
   background: #dfe3e6;
 }
 
+main {
+  background: #dfe3e6 !important;
+}
+
 header h1 {
   display: none;
 }
