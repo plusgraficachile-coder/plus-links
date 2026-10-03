@@ -69,21 +69,21 @@ const socialLinks = [
     handle: '@plus_grafica',
     url: 'https://www.instagram.com/plus_grafica/',
     icon: <InstagramIcon />,
-    accent: 'from-fuchsia-500/20 via-pink-500/10 to-orange-400/10',
+    accent: 'from-fuchsia-500/10 via-pink-500/5 to-orange-400/5',
   },
   {
     name: 'Facebook',
     handle: 'Plusgraficachile',
     url: 'https://www.facebook.com/Plusgraficachile/',
     icon: <FacebookIcon />,
-    accent: 'from-blue-500/20 to-blue-400/5',
+    accent: 'from-blue-500/10 to-blue-400/5',
   },
   {
     name: 'TikTok',
     handle: '@plus.grafica',
     url: 'https://www.tiktok.com/@plus.grafica',
     icon: <TikTokIcon />,
-    accent: 'from-cyan-400/10 via-zinc-800/20 to-pink-500/10',
+    accent: 'from-cyan-400/10 via-white/40 to-pink-500/5',
   },
 ];
 
@@ -102,43 +102,43 @@ const ActionCard = ({
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="group rounded-[22px] border border-white/10 bg-white/[0.055] p-4 text-left shadow-[0_18px_50px_rgba(0,0,0,0.18)] backdrop-blur transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.085] active:scale-[0.985]"
+    className="group rounded-[22px] border border-zinc-200/90 bg-white/85 p-4 text-left shadow-[0_16px_42px_rgba(24,24,27,0.07)] backdrop-blur transition hover:-translate-y-0.5 hover:border-zinc-300 hover:bg-white active:scale-[0.985]"
   >
     <div className="mb-7 flex items-center justify-between">
-      <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-white/90">
+      <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-100 text-zinc-800">
         {icon}
       </span>
-      <span className="text-white/35 transition group-hover:translate-x-0.5 group-hover:text-white/70">
+      <span className="text-zinc-400 transition group-hover:translate-x-0.5 group-hover:text-zinc-700">
         <ArrowIcon />
       </span>
     </div>
-    <span className="block text-[15px] font-semibold tracking-tight text-white">{title}</span>
+    <span className="block text-[15px] font-semibold tracking-tight text-zinc-950">{title}</span>
     <span className="mt-1 block text-xs leading-5 text-zinc-500">{detail}</span>
   </a>
 );
 
 export default function App() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#0b0d0f] px-5 py-8 text-white sm:py-12">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(circle_at_50%_0%,rgba(68,189,221,0.13),transparent_62%)]" />
-      <div className="pointer-events-none absolute -left-24 top-64 h-56 w-56 rounded-full bg-sky-500/[0.045] blur-3xl" />
-      <div className="pointer-events-none absolute -right-24 top-40 h-64 w-64 rounded-full bg-cyan-300/[0.035] blur-3xl" />
+    <main className="relative min-h-screen overflow-hidden bg-[#eceeef] px-5 py-8 text-zinc-950 sm:py-12">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(circle_at_50%_0%,rgba(125,211,252,0.24),transparent_64%)]" />
+      <div className="pointer-events-none absolute -left-24 top-64 h-56 w-56 rounded-full bg-sky-400/[0.08] blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 top-40 h-64 w-64 rounded-full bg-cyan-300/[0.10] blur-3xl" />
 
       <div className="relative mx-auto flex w-full max-w-[440px] flex-col">
         <header className="pb-8 pt-2 text-center">
           <img
             src="/logo.png"
             alt="Plus Gráfica"
-            className="mx-auto mb-6 h-auto w-[220px] object-contain drop-shadow-[0_12px_34px_rgba(0,0,0,0.28)]"
+            className="mx-auto mb-6 h-auto w-[220px] object-contain drop-shadow-[0_12px_30px_rgba(24,24,27,0.10)]"
           />
 
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-300/15 bg-sky-300/[0.07] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-100/80">
-            <span className="h-1.5 w-1.5 rounded-full bg-sky-300 shadow-[0_0_12px_rgba(125,211,252,0.8)]" />
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-zinc-300/80 bg-white/70 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-700 shadow-sm backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.35)]" />
             Proveedor gráfico B2B
           </div>
 
-          <h1 className="text-[30px] font-semibold tracking-[-0.035em] text-white">Plus Gráfica</h1>
-          <p className="mx-auto mt-2 max-w-sm text-[15px] leading-6 text-zinc-300">
+          <h1 className="text-[30px] font-semibold tracking-[-0.035em] text-zinc-950">Plus Gráfica</h1>
+          <p className="mx-auto mt-2 max-w-sm text-[15px] leading-6 text-zinc-700">
             Señalética · Rotulación · Gráfica industrial
           </p>
           <p className="mt-1.5 text-xs text-zinc-500">Producción e instalación en terreno · Temuco</p>
@@ -149,7 +149,7 @@ export default function App() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex w-full items-center justify-between rounded-[24px] bg-[#25D366] px-5 py-4 text-[#07170d] shadow-[0_18px_50px_rgba(37,211,102,0.18)] transition hover:-translate-y-0.5 hover:bg-[#2adb6f] active:scale-[0.985]"
+            className="group flex w-full items-center justify-between rounded-[24px] bg-[#25D366] px-5 py-4 text-[#07170d] shadow-[0_18px_42px_rgba(37,211,102,0.20)] transition hover:-translate-y-0.5 hover:bg-[#2adb6f] active:scale-[0.985]"
           >
             <span className="flex items-center gap-3.5">
               <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-black/10">
@@ -186,7 +186,7 @@ export default function App() {
             <h2 id="redes-title" className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
               Redes sociales
             </h2>
-            <span className="text-[11px] text-zinc-600">Canales oficiales</span>
+            <span className="text-[11px] text-zinc-500">Canales oficiales</span>
           </div>
 
           <div className="space-y-2.5">
@@ -196,19 +196,19 @@ export default function App() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-center justify-between overflow-hidden rounded-[20px] border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 transition hover:border-white/15 hover:bg-white/[0.065] active:scale-[0.99]"
+                className="group relative flex items-center justify-between overflow-hidden rounded-[20px] border border-zinc-200/90 bg-white/80 px-4 py-3.5 shadow-[0_10px_30px_rgba(24,24,27,0.045)] transition hover:border-zinc-300 hover:bg-white active:scale-[0.99]"
               >
-                <div className={`pointer-events-none absolute inset-0 bg-gradient-to-r ${link.accent} opacity-60`} />
+                <div className={`pointer-events-none absolute inset-0 bg-gradient-to-r ${link.accent} opacity-80`} />
                 <span className="relative flex items-center gap-3.5">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-black/15 text-white/90">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-100 text-zinc-800">
                     {link.icon}
                   </span>
                   <span className="text-left">
-                    <span className="block text-sm font-semibold text-white">{link.name}</span>
+                    <span className="block text-sm font-semibold text-zinc-950">{link.name}</span>
                     <span className="mt-0.5 block text-xs text-zinc-500">{link.handle}</span>
                   </span>
                 </span>
-                <span className="relative text-white/25 transition group-hover:translate-x-0.5 group-hover:text-white/60">
+                <span className="relative text-zinc-400 transition group-hover:translate-x-0.5 group-hover:text-zinc-700">
                   <ArrowIcon />
                 </span>
               </a>
@@ -217,8 +217,8 @@ export default function App() {
         </section>
 
         <footer className="pb-3 pt-10 text-center">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-zinc-600">Un solo enlace · Todos nuestros canales</p>
-          <p className="mt-2 text-[11px] text-zinc-700">© {new Date().getFullYear()} Plus Gráfica SpA</p>
+          <p className="text-[11px] uppercase tracking-[0.16em] text-zinc-500">Un solo enlace · Todos nuestros canales</p>
+          <p className="mt-2 text-[11px] text-zinc-500">© {new Date().getFullYear()} Plus Gráfica SpA</p>
         </footer>
       </div>
     </main>
