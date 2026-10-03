@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 const WHATSAPP_URL =
   'https://wa.me/56967240923?text=Hola%2C%20me%20comunico%20desde%20el%20hub%20de%20Plus%20Gr%C3%A1fica.%20Quisiera%20cotizar.';
@@ -49,13 +49,6 @@ const TikTokIcon = () => (
   </svg>
 );
 
-const MapPinIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-5 w-5" aria-hidden="true">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1116 0z" />
-    <circle cx="12" cy="10" r="2.5" />
-  </svg>
-);
-
 const WebIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-5 w-5" aria-hidden="true">
     <circle cx="12" cy="12" r="9" />
@@ -101,7 +94,7 @@ const ActionCard = ({
   detail,
 }: {
   href: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   title: string;
   detail: string;
 }) => (
@@ -133,9 +126,11 @@ export default function App() {
 
       <div className="relative mx-auto flex w-full max-w-[440px] flex-col">
         <header className="pb-8 pt-2 text-center">
-          <div className="mx-auto mb-5 flex w-[205px] items-center justify-center rounded-[22px] border border-white/80 bg-white px-5 py-4 shadow-[0_20px_65px_rgba(0,0,0,0.26)]">
-            <img src="/logo.png" alt="Plus Gráfica" className="h-auto w-full object-contain" />
-          </div>
+          <img
+            src="/logo.png"
+            alt="Plus Gráfica"
+            className="mx-auto mb-6 h-auto w-[220px] object-contain drop-shadow-[0_12px_34px_rgba(0,0,0,0.28)]"
+          />
 
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-300/15 bg-sky-300/[0.07] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-100/80">
             <span className="h-1.5 w-1.5 rounded-full bg-sky-300 shadow-[0_0_12px_rgba(125,211,252,0.8)]" />
@@ -201,7 +196,7 @@ export default function App() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group relative flex items-center justify-between overflow-hidden rounded-[20px] border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 transition hover:border-white/15 hover:bg-white/[0.065] active:scale-[0.99]`}
+                className="group relative flex items-center justify-between overflow-hidden rounded-[20px] border border-white/[0.08] bg-white/[0.035] px-4 py-3.5 transition hover:border-white/15 hover:bg-white/[0.065] active:scale-[0.99]"
               >
                 <div className={`pointer-events-none absolute inset-0 bg-gradient-to-r ${link.accent} opacity-60`} />
                 <span className="relative flex items-center gap-3.5">
@@ -220,26 +215,6 @@ export default function App() {
             ))}
           </div>
         </section>
-
-        <a
-          href="https://www.google.com/maps/search/Plus+Grafica+Temuco"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group mt-3 flex items-center justify-between rounded-[20px] border border-white/[0.08] bg-white/[0.025] px-4 py-3.5 transition hover:border-white/15 hover:bg-white/[0.05] active:scale-[0.99]"
-        >
-          <span className="flex items-center gap-3.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-zinc-300">
-              <MapPinIcon />
-            </span>
-            <span className="text-left">
-              <span className="block text-sm font-semibold text-white">Ubicación</span>
-              <span className="mt-0.5 block text-xs text-zinc-500">Temuco · La Araucanía</span>
-            </span>
-          </span>
-          <span className="text-white/25 transition group-hover:translate-x-0.5 group-hover:text-white/60">
-            <ArrowIcon />
-          </span>
-        </a>
 
         <footer className="pb-3 pt-10 text-center">
           <p className="text-[11px] uppercase tracking-[0.16em] text-zinc-600">Un solo enlace · Todos nuestros canales</p>
