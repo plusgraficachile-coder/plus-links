@@ -49,6 +49,12 @@ const TikTokIcon = () => (
   </svg>
 );
 
+const XIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.64 7.584H.47l8.6-9.835L0 1.154h7.594l5.243 6.932 6.064-6.933zm-1.29 19.49h2.039L6.487 3.24H4.3l13.31 17.403z" />
+  </svg>
+);
+
 const WebIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-5 w-5" aria-hidden="true">
     <circle cx="12" cy="12" r="9" />
@@ -87,6 +93,15 @@ const socialLinks = [
     icon: <TikTokIcon />,
     accent: 'from-[#abe9ed] via-[#e7e7f4] to-[#f9c5d8]',
     iconAccent: 'border-zinc-800 bg-zinc-900 text-white shadow-[-2px_0_0_#25f4ee,2px_0_0_#fe2c55]',
+  },
+  {
+    name: 'X',
+    handle: '@IDISARPUB',
+    url: 'https://x.com/IDISARPUB',
+    icon: <XIcon />,
+    accent: 'from-[#18181b] to-[#30343b]',
+    iconAccent: 'border-white/20 bg-white/10 text-white',
+    dark: true,
   },
 ];
 
@@ -211,11 +226,11 @@ export default function App() {
                     {link.icon}
                   </span>
                   <span className="text-left">
-                    <span className="block text-sm font-semibold text-zinc-950">{link.name}</span>
-                    <span className="mt-0.5 block text-xs text-slate-600">{link.handle}</span>
+                    <span className={`block text-sm font-semibold ${link.dark ? 'text-white' : 'text-zinc-950'}`}>{link.name}</span>
+                    <span className={`mt-0.5 block text-xs ${link.dark ? 'text-zinc-300' : 'text-slate-600'}`}>{link.handle}</span>
                   </span>
                 </span>
-                <span className="relative text-slate-600 transition group-hover:translate-x-0.5 group-hover:text-slate-900">
+                <span className={`relative transition group-hover:translate-x-0.5 ${link.dark ? 'text-zinc-300 group-hover:text-white' : 'text-slate-600 group-hover:text-slate-900'}`}>
                   <ArrowIcon />
                 </span>
               </a>
