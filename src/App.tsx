@@ -69,21 +69,24 @@ const socialLinks = [
     handle: '@plus_grafica',
     url: 'https://www.instagram.com/plus_grafica/',
     icon: <InstagramIcon />,
-    accent: 'from-fuchsia-500/10 via-pink-500/5 to-orange-400/5',
+    accent: 'from-[#f3c6f4] via-[#fbd0de] to-[#ffe0b5]',
+    iconAccent: 'border-fuchsia-200 bg-gradient-to-br from-fuchsia-600 via-pink-600 to-orange-500 text-white',
   },
   {
     name: 'Facebook',
     handle: 'Plusgraficachile',
     url: 'https://www.facebook.com/Plusgraficachile/',
     icon: <FacebookIcon />,
-    accent: 'from-blue-500/10 to-blue-400/5',
+    accent: 'from-[#c2dcff] to-[#e2ecff]',
+    iconAccent: 'border-blue-600 bg-[#1877f2] text-white',
   },
   {
     name: 'TikTok',
     handle: '@plus.grafica',
     url: 'https://www.tiktok.com/@plus.grafica',
     icon: <TikTokIcon />,
-    accent: 'from-cyan-400/10 via-white/40 to-pink-500/5',
+    accent: 'from-[#abe9ed] via-[#e7e7f4] to-[#f9c5d8]',
+    iconAccent: 'border-zinc-800 bg-zinc-900 text-white shadow-[-2px_0_0_#25f4ee,2px_0_0_#fe2c55]',
   },
 ];
 
@@ -92,28 +95,30 @@ const ActionCard = ({
   icon,
   title,
   detail,
+  tone,
 }: {
   href: string;
   icon: ReactNode;
   title: string;
   detail: string;
+  tone: 'catalog' | 'web';
 }) => (
   <a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="group rounded-[22px] border border-zinc-200/90 bg-white/85 p-4 text-left shadow-[0_16px_42px_rgba(24,24,27,0.07)] backdrop-blur transition hover:-translate-y-0.5 hover:border-zinc-300 hover:bg-white active:scale-[0.985]"
+    className={`group rounded-[22px] border p-4 text-left shadow-[0_16px_42px_rgba(24,24,27,0.07)] transition hover:-translate-y-0.5 hover:brightness-[1.03] active:scale-[0.985] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-700 ${tone === 'catalog' ? 'border-sky-300 bg-gradient-to-br from-[#b5e8fa] to-[#dcf3fc]' : 'border-blue-300 bg-gradient-to-br from-[#bfd5ff] to-[#e0e9ff]'}`}
   >
     <div className="mb-7 flex items-center justify-between">
-      <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-100 text-zinc-800">
+      <span className={`flex h-10 w-10 items-center justify-center rounded-xl border text-white ${tone === 'catalog' ? 'border-sky-600 bg-sky-600' : 'border-blue-700 bg-blue-700'}`}>
         {icon}
       </span>
-      <span className="text-zinc-400 transition group-hover:translate-x-0.5 group-hover:text-zinc-700">
+      <span className="text-slate-600 transition group-hover:translate-x-0.5 group-hover:text-slate-900">
         <ArrowIcon />
       </span>
     </div>
     <span className="block text-[15px] font-semibold tracking-tight text-zinc-950">{title}</span>
-    <span className="mt-1 block text-xs leading-5 text-zinc-500">{detail}</span>
+    <span className="mt-1 block text-xs leading-5 text-slate-600">{detail}</span>
   </a>
 );
 
@@ -171,12 +176,14 @@ export default function App() {
               icon={<CatalogIcon />}
               title="Ver catálogo"
               detail="Productos y servicios"
+              tone="catalog"
             />
             <ActionCard
               href={withTracking('https://www.plusgrafica.cl/')}
               icon={<WebIcon />}
               title="Sitio web"
               detail="plusgrafica.cl"
+              tone="web"
             />
           </div>
         </section>
@@ -196,19 +203,19 @@ export default function App() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-center justify-between overflow-hidden rounded-[20px] border border-zinc-200/90 bg-white/80 px-4 py-3.5 shadow-[0_10px_30px_rgba(24,24,27,0.045)] transition hover:border-zinc-300 hover:bg-white active:scale-[0.99]"
+                className="group relative flex items-center justify-between overflow-hidden rounded-[20px] border border-white/70 bg-white px-4 py-3.5 shadow-[0_10px_30px_rgba(24,24,27,0.045)] transition hover:-translate-y-0.5 hover:brightness-[1.03] active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-700"
               >
-                <div className={`pointer-events-none absolute inset-0 bg-gradient-to-r ${link.accent} opacity-80`} />
+                <div className={`pointer-events-none absolute inset-0 bg-gradient-to-r ${link.accent}`} />
                 <span className="relative flex items-center gap-3.5">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-100 text-zinc-800">
+                  <span className={`flex h-10 w-10 items-center justify-center rounded-xl border ${link.iconAccent}`}>
                     {link.icon}
                   </span>
                   <span className="text-left">
                     <span className="block text-sm font-semibold text-zinc-950">{link.name}</span>
-                    <span className="mt-0.5 block text-xs text-zinc-500">{link.handle}</span>
+                    <span className="mt-0.5 block text-xs text-slate-600">{link.handle}</span>
                   </span>
                 </span>
-                <span className="relative text-zinc-400 transition group-hover:translate-x-0.5 group-hover:text-zinc-700">
+                <span className="relative text-slate-600 transition group-hover:translate-x-0.5 group-hover:text-slate-900">
                   <ArrowIcon />
                 </span>
               </a>
