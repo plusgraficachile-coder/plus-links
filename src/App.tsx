@@ -96,8 +96,8 @@ const socialLinks = [
   },
   {
     name: 'X',
-    handle: '@IDISARPUB',
-    url: 'https://x.com/IDISARPUB',
+    handle: '@plus_grafica',
+    url: 'https://x.com/plus_grafica',
     icon: <XIcon />,
     accent: 'from-[#18181b] to-[#30343b]',
     iconAccent: 'border-white/20 bg-white/10 text-white',
