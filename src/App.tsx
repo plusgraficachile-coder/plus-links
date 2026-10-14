@@ -69,6 +69,26 @@ const CatalogIcon = () => (
   </svg>
 );
 
+
+const ThreadsIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden="true">
+    <path d="M16.8 8.2c-.4-2.6-2.1-4.2-4.8-4.2-3.8 0-6 2.9-6 8s2.2 8 6 8c3.7 0 6.2-2.3 6.2-5.4 0-2.5-1.9-4.2-5-4.2-2.1 0-3.5 1-3.5 2.5 0 1.4 1 2.3 2.5 2.3 2.2 0 3.5-2 3.5-4.4 0-3-2.1-5.1-5-5.1" />
+  </svg>
+);
+
+const LinkedInIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.265 2.37 4.265 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+  </svg>
+);
+
+const GoogleMapsIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden="true">
+    <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z"/>
+    <circle cx="12" cy="10" r="2.6"/>
+  </svg>
+);
+
 const socialLinks = [
   {
     name: 'Instagram',
@@ -102,6 +122,31 @@ const socialLinks = [
     accent: 'from-[#18181b] to-[#30343b]',
     iconAccent: 'border-white/20 bg-white/10 text-white',
     dark: true,
+  },
+
+  {
+    name: 'Threads',
+    handle: '@plus_grafica',
+    url: 'https://www.threads.com/@plus_grafica',
+    icon: <ThreadsIcon />,
+    accent: 'from-[#f2dfeb] via-[#f9e7ed] to-[#f4d8e5]',
+    iconAccent: 'border-zinc-800 bg-zinc-950 text-white',
+  },
+  {
+    name: 'LinkedIn',
+    handle: 'Buscar Luis Sáez · Plus Gráfica',
+    url: 'https://www.linkedin.com/search/results/people/?keywords=Luis%20S%C3%A1ez%20Plus%20Gr%C3%A1fica',
+    icon: <LinkedInIcon />,
+    accent: 'from-[#c6e0ff] to-[#e5f0ff]',
+    iconAccent: 'border-[#0a66c2] bg-[#0a66c2] text-white',
+  },
+  {
+    name: 'Google Maps',
+    handle: 'Ubicación y reseñas · Temuco',
+    url: 'https://www.google.com/maps/search/?api=1&query=Plus%20Gr%C3%A1fica%2C%20Vicente%20Huidobro%200433%2C%20Temuco%2C%20Chile',
+    icon: <GoogleMapsIcon />,
+    accent: 'from-[#d5eede] via-[#e2f2e1] to-[#f0f6d9]',
+    iconAccent: 'border-emerald-500 bg-white text-emerald-700',
   },
 ];
 
