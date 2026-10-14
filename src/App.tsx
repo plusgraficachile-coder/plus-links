@@ -82,10 +82,10 @@ const LinkedInIcon = () => (
   </svg>
 );
 
-const GoogleMapsIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden="true">
-    <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z"/>
-    <circle cx="12" cy="10" r="2.6"/>
+const GoogleBusinessIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden="true">
+    <path d="M4 10 6 4h12l2 6v2a2 2 0 0 1-4 0 2 2 0 0 1-4 0 2 2 0 0 1-4 0 2 2 0 0 1-4 0v-2z"/>
+    <path d="M5 14v6h14v-6M10 20v-5h4v5" />
   </svg>
 );
 
@@ -141,10 +141,10 @@ const socialLinks = [
     iconAccent: 'border-[#0a66c2] bg-[#0a66c2] text-white',
   },
   {
-    name: 'Google Maps',
-    handle: 'Ubicación y reseñas · Temuco',
+    name: 'Google Business',
+    handle: 'Ficha de empresa y reseñas',
     url: 'https://www.google.com/maps/search/?api=1&query=Plus%20Gr%C3%A1fica%2C%20Vicente%20Huidobro%200433%2C%20Temuco%2C%20Chile',
-    icon: <GoogleMapsIcon />,
+    icon: <GoogleBusinessIcon />,
     accent: 'from-[#d5eede] via-[#e2f2e1] to-[#f0f6d9]',
     iconAccent: 'border-emerald-500 bg-white text-emerald-700',
   },
