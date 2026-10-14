@@ -143,7 +143,7 @@ const socialLinks = [
   {
     name: 'Google Business',
     handle: 'Ficha de empresa y reseñas',
-    url: 'https://www.google.com/maps/search/?api=1&query=Plus%20Gr%C3%A1fica%2C%20Vicente%20Huidobro%200433%2C%20Temuco%2C%20Chile',
+    url: 'https://www.google.com/maps/search/?api=1&query=Plus%20Gr%C3%A1fica%20Temuco&query_place_id=ChIJWZOdoIjVFJYRKU78RXDcuXw',
     icon: <GoogleBusinessIcon />,
     accent: 'from-[#d5eede] via-[#e2f2e1] to-[#f0f6d9]',
     iconAccent: 'border-emerald-500 bg-white text-emerald-700',
