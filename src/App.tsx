@@ -134,8 +134,8 @@ const socialLinks = [
   },
   {
     name: 'LinkedIn',
-    handle: 'Buscar Luis Sáez · Plus Gráfica',
-    url: 'https://www.linkedin.com/search/results/people/?keywords=Luis%20S%C3%A1ez%20Plus%20Gr%C3%A1fica',
+    handle: 'Luis Sáez · Plus Gráfica',
+    url: 'https://www.linkedin.com/in/luis-s%C3%A1ez-178b91442/',
     icon: <LinkedInIcon />,
     accent: 'from-[#c6e0ff] to-[#e5f0ff]',
     iconAccent: 'border-[#0a66c2] bg-[#0a66c2] text-white',
